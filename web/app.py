@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 
 app = Flask('Allegro Multisearch', template_folder='web/templates/')
 
@@ -15,7 +15,7 @@ def index():
 
 @app.route('/search', methods=['POST'])
 def search():
-    phrases = request.form.getlist('search'):
+    phrases = request.form.getlist('search')
 
     return jsonify({'phrases': phrases})
 
