@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Allegro.pl multisearch feature</title>
+        <meta name="description" content="Allegro.pl multisearch feature">
+        <meta name="author" content="rimek">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="/web/css/styles.css?v=1.0">
+        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Allegro Multi-search</h1>
+            <hr/>
+
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>
