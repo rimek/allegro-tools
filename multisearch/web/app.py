@@ -1,20 +1,24 @@
-from flask import Flask, request
+import os
 
-app = Flask('Allegro Multisearch')
+from flask import Flask, render_template, request
+
+app = Flask('Allegro Multisearch', template_folder='web/templates/')
+
+app.static_folder = os.path.join(app.root_path, 'web', 'static')
+
 
 
 @app.route('/')
 def index():
-    return 'index'
+    return render_template('main.html')
 
 
 @app.route('/search', methods=['POST'])
 def search():
-    res = 'search for the '
-    for val in request.form['search']:
-        res += val + ' | '
+    phrases = request.form.getlist('search'):
 
-    return res
+    return jsonify({'phrases': phrases})
+
 
 def run(debug=True, host='0.0.0.0', port=9000):
     app.run(debug=debug, host=host, port=port)
