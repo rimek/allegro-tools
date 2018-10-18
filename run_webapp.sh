@@ -1,7 +1,6 @@
 #!/bin/bash
 
-PORT=9000
+source .env
+export ALLEGRO_API_KEY
 
-docker build -t rimek/allegro-tools .
-
-docker run -v $(pwd):/shared -p $PORT:9000 -it rimek/allegro-tools python webapp.py "$@"
+python webapp.py "$@"

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import argparse
+import os
 import sys
 
 from requests.exceptions import ConnectionError
@@ -9,10 +10,10 @@ from multisearch import MultiSearch
 
 def load_api_key():
     try:
-        with open('./api_key', 'r') as f:
-            return f.read().strip()
-    except Exception:
-        print("You have to create a 'api_key' file with the allegro api key inside", file=sys.stderr)  # noqa
+        return os.environ.get('ALLEGRO_API_KEY')
+    except KeyError:
+        print("You have to provide a ALLEGRO_API_KEY environment variable "
+              "with the allegro api key", file=sys.stderr)  # noqa
         sys.exit(1)
 
 

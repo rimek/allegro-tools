@@ -1,5 +1,6 @@
 #!/bin/bash
 
-docker build -t rimek/allegro-tools .
+source .env
+export ALLEGRO_API_KEY
 
-docker run -v $(pwd):/shared -it rimek/allegro-tools python ./cli.py "$@"
+python cli.py "$@"
