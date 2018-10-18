@@ -3,7 +3,7 @@ FROM python:3
 RUN mkdir -p /shared
 WORKDIR /shared
 
-ADD ./requirements.txt .
+ADD . /shared
 RUN pip install -Ur  requirements.txt
 
-# ADD . /shared
+CMD python webapp.py
