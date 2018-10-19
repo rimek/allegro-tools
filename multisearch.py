@@ -1,3 +1,4 @@
+import json
 from collections import defaultdict
 
 from zeep import Client
@@ -13,6 +14,8 @@ class Item():
     user_login = None
 
     def __init__(self, data):
+        self._data = data
+
         self.title = data['itemTitle']
         self.url = 'http://allegro.pl/show_item.php?item=%s' % data['itemId']
 
@@ -31,6 +34,7 @@ class Item():
         print("Price: %s / %s" % (self.price, self.price_w_shipping))
         print("User Login: %s" % self.user_login)
         print('---')
+
 
 
 class MultiSearch():
