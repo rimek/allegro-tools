@@ -5,6 +5,7 @@ import sys  # noqa
 from flask import Flask, jsonify, render_template, request
 from multisearch import MultiSearch
 
+
 app = Flask('Allegro Multisearch', template_folder='web/templates/')
 
 app.static_folder = os.path.join(app.root_path, 'web', 'static')
