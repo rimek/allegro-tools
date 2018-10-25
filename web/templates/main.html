@@ -1,17 +1,9 @@
 {% extends "base.html" %}
 
+{% block head %}
+    <script type="text/babel" src="{{ url_for('static', filename='js/form.js') }}"></script>
+{% endblock %}
+
 {% block content %}
-<form method="post" class="form-inline" action="/search" method="post">
-    <div class="form-group col-4">
-        <label for="search1">Search phrase 1</label>
-        <input name="search" id="search1"i class="form-control" required>
-    </div>
-
-    <div class="form-group col-4">
-        <label for="search1">Search phrase 2</label>
-        <input name="search" id="search2"i class="form-control">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <div id="react-form"></div>
 {% endblock %}

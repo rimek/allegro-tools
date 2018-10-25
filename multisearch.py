@@ -12,6 +12,8 @@ class Item():
     user_id = None
     user_login = None
 
+    fields = ('url', 'price', 'price_w_shipping', 'user_id', 'user_login')
+
     def __init__(self, data):
         self.title = data['itemTitle']
         self.url = 'http://allegro.pl/show_item.php?item=%s' % data['itemId']
@@ -23,6 +25,9 @@ class Item():
         if data['sellerInfo']:
             self.user_id = data['sellerInfo']['userId']
             self.user_login = data['sellerInfo']['userLogin']
+
+    def to_dict(self):
+        return {f: getattr(self, f) for f in self.fields}
 
     def display(self):
         print("Title: %s" % self.title)
@@ -77,23 +82,23 @@ class MultiSearch():
     def match_uid(self):
         groups = {}
 
+        # go through list of lists with individual phrase results
         for idx, item_list in enumerate(self.lists):
             if not item_list:
                 return []
 
+            # through items in single list
             for item in item_list:
-                if item.user_id:
-                    if item.user_id not in groups:
-                        groups[item.user_id] = defaultdict(list)
+                if item.user_login:
+                    # create an user entry in reults
+                    if item.user_login not in groups:
+                        groups[item.user_login] = defaultdict(list)
 
-                    groups[item.user_id][idx].append(item)
+                    # append item from this list to a results
+                    groups[item.user_login][idx].append(item)
 
-        result = {}
-        for uid, ldict in groups.items():
-            # ldict is a {idx: items_list, ...} structure
-            #
-            # if user has item from all lists
-            if len(ldict) == len(self.lists):
-                result[uid] = [item for sublist in ldict.values() for item in sublist]
+        def flat_result(lists):
+            return [item for sublist in lists.values() for item in sublist]
 
-        return result
+        # filter out the user entries where number of matches isn't equal to number of search phrases
+        return {k: flat_result(v) for k, v in groups.items() if len(v) == len(self.lists)}

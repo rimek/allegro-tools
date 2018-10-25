@@ -9,16 +9,34 @@
         <meta name="author" content="rimek">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+        <!-- tether -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
+
+        <!-- bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="/web/css/styles.css?v=1.0">
+
+        <!-- Load React. -->
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+        <!-- babel for compiling jsx -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
         <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        {% block head %}{% endblock %}
     </head>
 
     <body>
         <div class="container">
-            <h1>Allegro Multi-search</h1>
+            <h2>Allegro Multi-search</h2>
             <hr/>
 
             {% block content %}{% endblock %}
